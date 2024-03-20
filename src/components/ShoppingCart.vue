@@ -2,33 +2,35 @@
   <div>
     <button
       @click="toggleCart"
-      class="fixed bottom-4 right-4 bg-white font-bold py-2 px-2.5 rounded-full border border-black"
+      class="fixed top-6 right-8 bg-white font-bold py-2 px-2.5 rounded-full z-10 hover:scale-105 transition-transform duration-300"
     >
-      <p
-        class="absolute top-[-17px] right-0 bg-red-500 text-white rounded-full grid py-1 px-2 text-xs"
+      <div
+        class="absolute top-[-15px] right-0 flex items-center justify-center w-6 h-6 rounded-full bg-red-500"
       >
-        {{ itemCount }}
-      </p>
+        <p class="text-white grid py-1 px-2 text-xs">
+          {{ itemCount }}
+        </p>
+      </div>
       <font-awesome-icon icon="shopping-cart" class="mr-0.5" />
     </button>
 
     <div
       v-if="isCartOpen"
-      class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 py-10"
+      class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 py-10 z-10"
     >
-      <div class="bg-white p-8 rounded-lg w-3/4 max-h-full overflow-y-auto">
+      <div class="bg-white p-8 w-3/4 max-h-full overflow-y-auto">
         <div class="flex justify-between">
           <h2 class="text-lg font-bold">Shopping Cart</h2>
           <button
             @click="toggleCart"
-            class="bg-red-500 hover:bg-red-700 text-white text-sm font-bold py-2 px-4 rounded"
+            class="bg-red-500 hover:bg-red-700 text-white text-sm font-bold h-fit py-2 px-4 rounded"
           >
             <font-awesome-icon icon="close" />
           </button>
         </div>
         <div v-if="cart.length > 0">
           <p
-            class="text-md font-bold border border-y-gray-200 border-x-transparent mt-4 py-2"
+            class="text-md border border-y-gray-200 border-x-transparent mt-4 py-2"
           >
             Item Count - {{ itemCount }}
           </p>
@@ -68,10 +70,12 @@
             </div>
           </li>
         </ul>
-        <p v-if="cart.length === 0" class="mt-4 text-gray-600">
+        <p v-if="cart.length === 0" class="mt-4 text-sm text-gray-600">
           Your cart is empty.
         </p>
-        <p v-else class="mt-4 text-xl font-bold">Total: ${{ total }}</p>
+        <p v-else class="mt-4 text-xl">
+          Total: <span class="font-bold">${{ total }}</span>
+        </p>
       </div>
     </div>
   </div>
