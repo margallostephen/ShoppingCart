@@ -7,14 +7,15 @@
     ></ProductList>
     <ShoppingCart 
       :cart="cart" 
-      @remove="removeFromCart">
-    </ShoppingCart>
+      @remove="removeFromCart"
+    ></ShoppingCart>
   </div>
 </template>
 
 <script>
 import ProductList from "./components/ProductList.vue";
 import ShoppingCart from "./components/ShoppingCart.vue";
+import shopee from "./assets/shopee.mp3";
 
 export default {
   name: "App",
@@ -34,8 +35,10 @@ export default {
 
   methods: {
     addToCart(product) {
-      if (!this.cart.find((item) => item.id === product.id))
+      if (!this.cart.find((item) => item.id === product.id)) {
+        new Audio(shopee).play();
         this.cart.push({ ...product, quantity: 1 });
+      }
     },
     removeFromCart(index) {
       this.cart.splice(index, 1);
